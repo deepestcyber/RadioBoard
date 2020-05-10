@@ -105,6 +105,21 @@ public final class RadioIconFactory {
 	}
 	
 	/**
+	 * Create a new Streamer icon
+	 * 
+	 * @param url
+	 * The URL to stream video from
+	 * @param width
+	 * Width of the stream
+	 * @param height
+	 * Height of the stream
+	 * @return
+	 */
+	public static RadioIconStream constructStream( String url, int width, int height ) {
+		return new RadioIconStream( url, width, height );
+	}
+	
+	/**
 	 * Constructs a dynamic cloudy filter
 	 * 
 	 * @param width

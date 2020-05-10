@@ -103,6 +103,10 @@ public final class RadioCanvasFactory {
 				if ( file.exists() ) {
 					icon = RadioIconFactory.constructGif( file, elWidth, elHeight );
 				}
+			} else if ( type.equalsIgnoreCase( "stream" ) ) {
+				String url = ( String ) element.get( "url" );
+				icon = RadioIconFactory.constructStream( url, elWidth, elHeight );
+				
 			} else if ( type.equalsIgnoreCase( "cloud" ) ) {
 				int transparency = ( int ) element.get( "transparency" );
 				int delay  = ( int ) element.get( "delay" );
