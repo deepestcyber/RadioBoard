@@ -83,21 +83,27 @@ public class RadioIconStream implements RadioIcon {
 			lastUpdated = System.currentTimeMillis();
         }
     }
+    
+    protected TestBufferFormatCallback testBufferFormatCallback;
+    protected TestRenderCallback testRenderCallback;
 	
 	public RadioIconStream( String url, int width, int height ) {
 		rgbBuffer = new int[width * height];
+		testBufferFormatCallback = new TestBufferFormatCallback();
+		testRenderCallback = new TestRenderCallback();
 		
 		try {
 			this.width = width;
 			this.height = height;			
 			
 			outputBufferImage = new BufferedImage( width, height, BufferedImage.TYPE_INT_ARGB );
+			outputBuffer = JetpImageUtil.getRGBArray(outputBufferImage);
 			
 	        MediaPlayerFactory factory = new MediaPlayerFactory();
 	        mediaPlayer = factory.mediaPlayers().newEmbeddedMediaPlayer();
 	        mediaPlayer.videoSurface().set(factory.videoSurfaces().newVideoSurface(
-	        		new TestBufferFormatCallback(), 
-	        		new TestRenderCallback(), 
+	        		testBufferFormatCallback, 
+	        		testRenderCallback, 
 	        		true));
 	        mediaPlayer.media().play(url);
 			
